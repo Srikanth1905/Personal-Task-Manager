@@ -128,7 +128,7 @@ def task_dashboard():
                         new_status = st.selectbox(
                             "Change Status", 
                             ["Pending", "To Do", "In Progress", "Completed"], key=f"status_{task[0]}",
-                            index=["Pending", "To Do", "In Progress", "Completed"].index(task[7])
+                            index=["Pending", "To Do", "In Progress", "Completed"].index(task[-1])
                         )
                         if new_status != task[7]:
                             update_task_with_status(task[0], task[2], task[3], task[4], task[5], new_status)
@@ -155,7 +155,7 @@ def task_dashboard():
                         description = st.text_area("Description", value=current_task[3])
                         due_date = st.date_input("Due Date", value=datetime.datetime.strptime(current_task[4], "%Y-%m-%d").date())
                         priority = st.selectbox("Priority", ["Low", "Medium", "High"], index=["Low", "Medium", "High"].index(current_task[5]))
-                        status = st.selectbox("Status", ["Pending", "To Do", "In Progress", "Completed"], index=["Pending", "To Do", "In Progress", "Completed"].index(current_task[7]))
+                        status = st.selectbox("Status", ["Pending", "To Do", "In Progress", "Completed"], index=["Pending", "To Do", "In Progress", "Completed"].index(current_task[-1]))
                         
                         col1, col2 = st.columns(2)
                         with col1:
