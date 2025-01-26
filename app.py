@@ -107,8 +107,8 @@ def task_dashboard():
         # Task Display
         if tasks:
             for task in tasks:
-                st.write(task) 
-                with st.expander(f"{task[2]} - 🏷️ {task[5]} Priority - Status: {task[7]}"):
+                
+                with st.expander(f"{task[2]} - 🏷️ {task[5]} Priority - Status: {task[-1]}"):
                     st.markdown(f"**Description:** {task[3]}")
                     st.markdown(f"**Due Date:** {task[4]}")
     
