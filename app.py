@@ -15,7 +15,7 @@ from task import (
     get_tasks_by_status
 )
 from user_auth import login_user, register_user
-from database import  create_tables(), execute_query(), fetch_query()
+from database import  create_tables, execute_query, fetch_query
 
 create_tables()
 
