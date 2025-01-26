@@ -15,6 +15,9 @@ from task import (
     get_tasks_by_status
 )
 from user_auth import login_user, register_user
+from database import  create_tables(), execute_query(), fetch_query()
+
+create_tables()
 
 # Page Configuration
 st.set_page_config(page_title="Task Ninja 🥷", page_icon="✅", layout="wide")
