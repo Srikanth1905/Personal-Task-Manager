@@ -1,0 +1,116 @@
+' @startuml usecase
+' actor User
+' usecase "Login" as UC1
+' usecase "Register" as UC2
+' usecase "Add Task" as UC3
+' usecase "Edit Task" as UC4
+' usecase "Delete Task" as UC5
+' usecase "View Tasks" as UC6
+' usecase "Set Tags" as UC7
+' usecase "Set Priorities" as UC8
+
+' User --> UC1
+' User --> UC2
+' User --> UC3
+' User --> UC4
+' User --> UC5
+' User --> UC6
+' User --> UC7
+' User --> UC8
+' @enduml
+
+
+' @startuml class
+' class User {
+'     +id: int
+'     +email: string
+'     +password: string
+' }
+
+' class Task {
+'     +id: int
+'     +user_id: int
+'     +title: string
+'     +description: string
+'     +due_date: Date
+'     +priority: string
+'     +tags: string
+' }
+
+' User "1" -- "many" Task
+' @enduml
+
+' @startuml sequence
+' actor User
+' participant "Web Interface" as Web
+' participant "Task Manager" as TaskMgr
+' participant "Database" as DB
+
+' User -> Web: Open Task Manager
+' Web -> User: Display Login Page
+' User -> Web: Login
+' Web -> TaskMgr: Authenticate User
+' TaskMgr -> DB: Validate Credentials
+' DB --> TaskMgr: Success/Failure
+' TaskMgr --> Web: Login Result
+' Web --> User: Login Successful
+' User -> Web: Add New Task
+' Web -> TaskMgr: Save Task
+' TaskMgr -> DB: Insert Task Data
+' DB --> TaskMgr: Confirmation
+' TaskMgr --> Web: Task Added
+' Web --> User: Confirmation Message
+' @enduml
+
+
+' @startuml actvity
+' start
+' :Login to System;
+' if (Is user authenticated?) then (Yes)
+'     :Display Task List;
+'     :Select a Task;
+'     :Edit Task Details;
+'     :Save Changes;
+' else (No)
+'     :Display Error Message;
+' endif
+' stop
+' @enduml
+
+' @startuml erd
+' entity User {
+'     * id: int
+'     * email: string
+'     * password: string
+' }
+
+' entity Task {
+'     * id: int
+'     * user_id: int
+'     * title: string
+'     * description: string
+'     * due_date: Date
+'     * priority: string
+'     * tags: string
+' }
+
+' User ||--o Task: owns
+' @enduml
+
+
+' @startuml depl
+' node "User Device" {
+'     [Web Browser]
+' }
+
+' node "Streamlit Cloud" {
+'     component "Personal Task Manager"
+'     component "SQLite Database"
+' }
+
+' [Web Browser] --> "Personal Task Manager"
+' "Personal Task Manager" --> "SQLite Database"
+' @enduml
+
+
+
