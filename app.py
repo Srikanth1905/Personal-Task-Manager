@@ -130,7 +130,7 @@ def task_dashboard():
                             ["Pending", "To Do", "In Progress", "Completed"], key=f"status_{task[0]}",
                             index=["Pending", "To Do", "In Progress", "Completed"].index(task[-1])
                         )
-                        if new_status != task[7]:
+                        if new_status != task[-1]:
                             update_task_with_status(task[0], task[2], task[3], task[4], task[5], new_status)
                             st.rerun()
         else:
