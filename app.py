@@ -365,7 +365,7 @@ def main():
     - The `st.rerun()` function is called to refresh the app when the user logs out.
     """
     
-       create_tables()
+    create_tables()
     
     if not st.session_state['logged_in']:
         auth_pages()
