@@ -29,7 +29,7 @@ from task import (
     get_tasks_by_user_id, get_task_by_id, get_tasks_by_status
 )
 import re
-
+st.set_page_config(page_title="Task Ninja 🥷", page_icon="✅", layout="wide")
 # Initialize session states
 if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
@@ -359,7 +359,7 @@ def main():
     - The function uses Streamlit's session state to manage user authentication and page navigation.
     - The `st.rerun()` function is called to refresh the app when the user logs out.
     """
-    st.set_page_config(page_title="Task Ninja 🥷", page_icon="✅", layout="wide")
+    
     create_tables()
 
     if not st.session_state.logged_in:
