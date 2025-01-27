@@ -31,13 +31,20 @@ from task import (
 import re
 st.set_page_config(page_title="Task Ninja 🥷", page_icon="✅", layout="wide")
 # Initialize session states
-if 'logged_in' not in st.session_state:
-    st.session_state.logged_in = False
-    st.session_state.user_id = None
-    st.session_state.edit_task_id = None
-    st.session_state.show_task_form = False
-    st.session_state.auth_page = "register"
-    st.session_state.current_page = "dashboard"
+def init_session_state():
+    """Initialize all session state variables with default values."""
+    if 'logged_in' not in st.session_state:
+        st.session_state.logged_in = False
+    if 'user_id' not in st.session_state:
+        st.session_state.user_id = None
+    if 'edit_task_id' not in st.session_state:
+        st.session_state.edit_task_id = None
+    if 'show_task_form' not in st.session_state:
+        st.session_state.show_task_form = False
+    if 'auth_page' not in st.session_state:
+        st.session_state.auth_page = "login"
+    if 'current_page' not in st.session_state:
+        st.session_state.current_page = "dashboard"
 
 def validate_email(email: str) -> bool:
     """
