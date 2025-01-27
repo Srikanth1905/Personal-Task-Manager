@@ -364,9 +364,7 @@ def main():
     - The function uses Streamlit's session state to manage user authentication and page navigation.
     - The `st.rerun()` function is called to refresh the app when the user logs out.
     """
-    
     create_tables()
-    
     if not st.session_state['logged_in']:
         auth_pages()
     else:
