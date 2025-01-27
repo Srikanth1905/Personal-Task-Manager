@@ -31,20 +31,18 @@ from task import (
 import re
 st.set_page_config(page_title="Task Ninja 🥷", page_icon="✅", layout="wide")
 # Initialize session states
-def init_session_state():
-    """Initialize all session state variables with default values."""
-    if 'logged_in' not in st.session_state:
-        st.session_state.logged_in = False
-    if 'user_id' not in st.session_state:
-        st.session_state.user_id = None
-    if 'edit_task_id' not in st.session_state:
-        st.session_state.edit_task_id = None
-    if 'show_task_form' not in st.session_state:
-        st.session_state.show_task_form = False
-    if 'auth_page' not in st.session_state:
-        st.session_state.auth_page = "login"
-    if 'current_page' not in st.session_state:
-        st.session_state.current_page = "dashboard"
+if 'logged_in' not in st.session_state:
+    st.session_state['logged_in'] = False
+if 'user_id' not in st.session_state:
+    st.session_state['user_id'] = None
+if 'edit_task_id' not in st.session_state:
+    st.session_state['edit_task_id'] = None
+if 'show_task_form' not in st.session_state:
+    st.session_state['show_task_form'] = False
+if 'auth_page' not in st.session_state:
+    st.session_state['auth_page'] = "login"
+if 'current_page' not in st.session_state:
+    st.session_state['current_page'] = "dashboard"
 
 def validate_email(email: str) -> bool:
     """
@@ -367,24 +365,27 @@ def main():
     - The `st.rerun()` function is called to refresh the app when the user logs out.
     """
     
-    create_tables()
-
-     if not st.session_state.logged_in:
+       create_tables()
+    
+    if not st.session_state['logged_in']:
         auth_pages()
     else:
-        # Navigation logic
-        if st.session_state.current_page == "dashboard":
+        if st.session_state['current_page'] == "dashboard":
             task_dashboard()
-        elif st.session_state.current_page == "task_form":
+        elif st.session_state['current_page'] == "task_form":
             task_form_page()
 
-        # Logout button in sidebar
         if st.sidebar.button("🚪 Logout"):
             # Reset all session state variables
             for key in list(st.session_state.keys()):
                 del st.session_state[key]
-            init_session_state()  # Reinitialize with defaults
+            # Reinitialize with defaults
+            st.session_state['logged_in'] = False
+            st.session_state['user_id'] = None
+            st.session_state['edit_task_id'] = None
+            st.session_state['show_task_form'] = False
+            st.session_state['auth_page'] = "login"
+            st.session_state['current_page'] = "dashboard"
             st.rerun()
-
 if __name__ == "__main__":
     main()
