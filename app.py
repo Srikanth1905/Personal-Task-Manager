@@ -378,8 +378,8 @@ def main():
             st.session_state.auth_page = "register"
             st.rerun()
 
-"""The `if __name__ == "__main__":` block in Python is used to check whether the current script is
-being run directly by the Python interpreter or if it is being imported as a module into another
-script."""
+#The `if __name__ == "__main__":` block in Python is used to check whether the current script is
+#being run directly by the Python interpreter or if it is being imported as a module into another
+#script.
 if __name__ == "__main__":
     main()
