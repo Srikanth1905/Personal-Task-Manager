@@ -360,7 +360,7 @@ def main():
     - current_page: String indicating the current page ("dashboard" or "task_form").
     - user_id: User's unique identifier.
     - edit_task_id: ID of the task being edited.
-    - show_task_form: Boolean indicating if the task form should be displayed.
+    - show_task_form: Boolean indicates whether the task form should be displayed.
     - auth_page: String indicating the current authentication page ("register" or other).
     Note:
     - The function uses Streamlit's session state to manage user authentication and page navigation.
@@ -369,24 +369,22 @@ def main():
     
     create_tables()
 
-    if not st.session_state.logged_in:
+     if not st.session_state.logged_in:
         auth_pages()
     else:
+        # Navigation logic
         if st.session_state.current_page == "dashboard":
             task_dashboard()
         elif st.session_state.current_page == "task_form":
             task_form_page()
 
+        # Logout button in sidebar
         if st.sidebar.button("🚪 Logout"):
-            st.session_state.logged_in = False
-            st.session_state.user_id = None
-            st.session_state.edit_task_id = None
-            st.session_state.show_task_form = False
-            st.session_state.auth_page = "register"
+            # Reset all session state variables
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
+            init_session_state()  # Reinitialize with defaults
             st.rerun()
 
-#The `if __name__ == "__main__":` block in Python is used to check whether the current script is
-#being run directly by the Python interpreter or if it is being imported as a module into another
-#script.
 if __name__ == "__main__":
     main()
